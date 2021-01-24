@@ -1,0 +1,17 @@
+.profile__info {
+  color: #fff;
+  display: grid;
+  grid-template-columns: min-content min-content;
+  align-items: center;
+  column-gap: 19px;
+  row-gap: 9px;
+  grid-template-areas:
+  "name edit"
+  "job job";
+}
+
+@media screen and (max-width: 425px) {
+  .profile__info {
+    column-gap: 8px;
+  }
+}

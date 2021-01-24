@@ -1,0 +1,13 @@
+.header-mobile__link {
+  font-weight: normal;
+  font-size: 18px;
+  line-height: 22px;
+  color: #fff;
+  text-decoration: none;
+  opacity: 1;
+  transition: opacity .3s linear;
+}
+
+.header-mobile__link:hover {
+  opacity: .6;
+}

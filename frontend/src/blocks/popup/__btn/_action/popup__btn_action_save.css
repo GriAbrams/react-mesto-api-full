@@ -1,0 +1,26 @@
+.popup__btn_action_save {
+  margin-top: 20px;
+  width: calc(430px - 72px);
+  height: 50px;
+  background: #000;
+  border-radius: 2px;
+  font-size: 18px;
+  line-height: 22px;
+  font-weight: normal;
+  color: #fff;
+  opacity: 1;
+  transition: opacity .3s linear;
+}
+  
+.popup__btn_action_save:hover {
+  opacity: .8;
+}
+
+@media screen and (max-width: 510px) {
+  .popup__btn_action_save {
+    width: calc(280px - 40px);
+    height: 40px;
+    font-size: 14px;
+    line-height: 17px;
+  }
+}

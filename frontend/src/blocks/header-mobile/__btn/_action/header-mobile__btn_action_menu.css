@@ -1,0 +1,11 @@
+.header-mobile__btn_action_menu {
+  background: url(../../../../images/burger-btn.svg) center no-repeat;
+  width: 24px;
+  height: 18px;
+  opacity: 1;
+  transition: opacity .3s linear;
+}
+
+.header-mobile__btn_action_menu:hover {
+  opacity: .6;
+}

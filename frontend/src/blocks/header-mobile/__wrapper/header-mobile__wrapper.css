@@ -1,0 +1,8 @@
+.header-mobile__wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 88%;
+  margin: 0 auto;
+  padding: 28px 0 30px;
+}

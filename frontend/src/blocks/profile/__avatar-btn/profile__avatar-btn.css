@@ -1,0 +1,23 @@
+.profile__avatar-btn {
+  position: absolute;
+  top: 0;
+  left: 0;
+  padding: 0;
+  margin: 0;
+  width: 100%;
+  height: 100%;
+  background-color: none;
+  border: none;
+  outline: none;
+  border-radius: 50%;
+  background-color: rgba(0, 0, 0, 0);
+  cursor: pointer;
+  transition: background-color .3s linear;
+}
+
+.profile__avatar-btn:hover {
+  background-color: rgba(0, 0, 0, 0.8);
+  background-image: url(../../../images/avatar-btn.svg);
+  background-position: center;
+  background-repeat: no-repeat;
+}

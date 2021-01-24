@@ -1,0 +1,15 @@
+.profile__btn {
+  padding: 0;
+  box-sizing: border-box;
+  background-color: transparent;
+  border-color: #fff;
+  border-style: solid;
+  cursor: pointer;
+  outline: none;
+  opacity: 1;
+  transition: opacity .3s linear;
+}
+
+.profile__btn:hover {
+  opacity: .6;
+}

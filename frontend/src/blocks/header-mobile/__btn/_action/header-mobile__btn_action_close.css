@@ -1,0 +1,11 @@
+.header-mobile__btn_action_close {
+  background: url(../../../../images/popup-close-btn-mobile.svg) center no-repeat;
+  width: 24px;
+  height: 24px;
+  opacity: 1;
+  transition: opacity .3s linear;
+}
+
+.header-mobile__btn_action_close:hover {
+  opacity: .6;
+}

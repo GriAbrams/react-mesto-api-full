@@ -49,7 +49,7 @@ class Api {
 }
 
 export const authApi = new Api({
-  url: 'https://api.abrams.students.nomoredomains.rocks',
+  url: 'https://api.griabrams.students.nomoredomains.rocks',
   headers: {
     'Content-Type': 'application/json'
   }

@@ -35,11 +35,13 @@ export default function App() {
   const [email, setEmail] = React.useState('');
 
   React.useEffect(() => {
+    if (loggedIn) {
     Promise.all([api.getUserInfo(), api.getInitialCards()])
-    .then(([userData, cards]) => {
-      setCurrentUser(userData);
-      setCards(cards);
-    }).catch((err) => console.log(err));
+      .then(([userData, cards]) => {
+        setCurrentUser(userData);
+        setCards(cards);
+      }).catch((err) => console.log(err));
+    }
   }, [loggedIn]);
 
   React.useEffect(() => {

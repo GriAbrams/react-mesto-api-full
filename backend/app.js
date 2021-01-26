@@ -18,10 +18,11 @@ const app = express();
 const corsOptions = {
   origin: [
     'http://griabrams.students.nomoredomains.rocks',
-    'https://griabrams.students.nomoredomains.rocks'
+    'https://griabrams.students.nomoredomains.rocks',
   ],
   methods: ['GET', 'HEAD', 'PUT', 'PATCH', 'POST', 'DELETE'],
-  credentials: true
+  allowedHeaders: ['Content-Type', 'Origin', 'Referer', 'Accept', 'Authorization'],
+  credentials: true,
 };
 app.use(cors(corsOptions));
 

@@ -82,8 +82,9 @@ class Api {
 
 export const api = new Api({
   url: 'https://api.griabrams.students.nomoredomains.rocks',
+  // url: 'http://localhost:3000',
   headers: {
-    authorization: `Bearer ${localStorage.getItem("token")}`,
+    'Authorization': `Bearer ${localStorage.getItem("token")}`,
     'Content-Type': 'application/json'
   }
 });

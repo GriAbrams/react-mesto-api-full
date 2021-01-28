@@ -21,14 +21,14 @@ const getUser = (req, res, next) => {
       return res.status(200).send(user);
     }).catch((err) => {
       if (err.name === 'CastError') {
-        throw new NotFoundError('Пользователь не найден');
+        next(new NotFoundError('Пользователь не найден'));
       }
       next(err);
   });
 };
 
 const getCurrentUser = (req, res, next) => {
-  User.findById(req.user)
+  User.findById(req.user._id)
     .then((user) => {
       if (!user) {
         throw new NotFoundError('Пользователь не найден');
@@ -36,7 +36,7 @@ const getCurrentUser = (req, res, next) => {
       return res.status(200).send(user);
     }).catch((err) => {
       if (err.name === 'CastError') {
-        throw new NotFoundError('Пользователь не найден');
+        next(new NotFoundError('Пользователь не найден'));
       }
       next(err);
   });
@@ -44,16 +44,17 @@ const getCurrentUser = (req, res, next) => {
 
 const createUser = (req, res, next) => {
   const { name, about, avatar, email, password } = req.body;
-  
-  bcrypt.hash(password, 10)
+
+  bcrypt
+    .hash(password, 10)
     .then((hash) => User.create({ name, about, avatar, email, password: hash }))
     .then((user) => res.status(200).send(user))
     .catch((err) => {
       if (err.name === 'ValidationError') {
-        throw new ValidationError('Переданы некорректные данные');
+        next(new ValidationError('Переданы некорректные данные'));
       }
       next(err);
-  });
+    });
 };
 
 const editUser = (req, res, next) => {
@@ -70,10 +71,10 @@ const editUser = (req, res, next) => {
       return res.status(200).send(user);
     }).catch((err) => {
       if (err.name === 'ValidationError') {
-        throw new ValidationError('Переданы некорректные данные');
+        next(new ValidationError('Переданы некорректные данные'));
       }
       if (err.name === 'CastError') {
-        throw new NotFoundError('Пользователь не найден');
+        next(new NotFoundError('Пользователь не найден'));
       }
       next(err);
   });
@@ -93,10 +94,10 @@ const editAvatar = (req, res, next) => {
       return res.status(200).send(user);
     }).catch((err) => {
       if (err.name === 'ValidationError') {
-        throw new ValidationError('Переданы некорректные данные');
+        next(new ValidationError('Переданы некорректные данные'));
       }
       if (err.name === 'CastError') {
-        throw new NotFoundError('Пользователь не найден');
+        next(new NotFoundError('Пользователь не найден'));
       }
       next(err);
   });

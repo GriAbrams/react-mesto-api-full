@@ -15,16 +15,7 @@ const { PORT = 3000 } = process.env;
 
 const app = express();
 
-const corsOptions = {
-  origin: [
-    'http://griabrams.students.nomoredomains.rocks',
-    'https://griabrams.students.nomoredomains.rocks',
-  ],
-  methods: ['GET', 'HEAD', 'PUT', 'PATCH', 'POST', 'DELETE'],
-  allowedHeaders: ['Content-Type', 'Origin', 'Referer', 'Accept', 'Authorization'],
-  credentials: true,
-};
-app.use(cors(corsOptions));
+app.use(cors());
 
 app.use(bodyParser.json());
 

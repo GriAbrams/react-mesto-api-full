@@ -35,8 +35,9 @@ export default function App() {
   const [email, setEmail] = React.useState('');
 
   React.useEffect(() => {
+    const token = localStorage.getItem('token');
     if (loggedIn) {
-    Promise.all([api.getUserInfo(), api.getInitialCards()])
+    Promise.all([api.getUserInfo(token), api.getInitialCards(token)])
       .then(([userData, cards]) => {
         setCurrentUser(userData);
         setCards(cards);
@@ -95,7 +96,8 @@ export default function App() {
   }
 
   function handleUpdateUser(inputValues) {
-    api.setUserInfo(inputValues)
+    const token = localStorage.getItem('token');
+    api.setUserInfo(inputValues, token)
     .then((data) => {
       setCurrentUser(data);
       closeAllPopups();
@@ -107,7 +109,8 @@ export default function App() {
   }
 
   function handleUpdateAvatar(userLink) {
-    api.editUserAvatar(userLink)
+    const token = localStorage.getItem('token');
+    api.editUserAvatar(userLink, token)
     .then((data) => {
       setCurrentUser(data);
       closeAllPopups();
@@ -119,7 +122,8 @@ export default function App() {
   }
 
   function handleAddPlaceSubmit(inputValues) {
-    api.addNewCard(inputValues)
+    const token = localStorage.getItem('token');
+    api.addNewCard(inputValues, token)
     .then((newCard) => {
       setCards([newCard, ...cards]);
       closeAllPopups();
@@ -133,7 +137,8 @@ export default function App() {
 
   function handleCardLike(card) {
     const isLiked = card.likes.some(i => i._id === currentUser._id);
-    api.changeLikeCardStatus(card._id, isLiked)
+    const token = localStorage.getItem('token');
+    api.changeLikeCardStatus(card._id, isLiked, token)
     .then((newCard) => {
       const newCards = cards.map((c) => c._id === card._id ? newCard : c);
       setCards(newCards);
@@ -146,7 +151,8 @@ export default function App() {
   }
 
   function handleCardDelete(card) {
-    api.deleteCard(card._id)
+    const token = localStorage.getItem('token');
+    api.deleteCard(card._id, token)
     .then(() => {
       const newCards = cards.filter((c) => c !== card);
       setCards(newCards);

@@ -1,7 +1,6 @@
 class Api {
   constructor (config) {
     this._url = config.url;
-    this._headers = config.headers;
   }
 
   _sendRequest(link, params) {
@@ -14,24 +13,33 @@ class Api {
       });
   }
 
-  getUserInfo() {
+  getUserInfo(token) {
     return this._sendRequest(`${this._url}/users/me`, {
       method: 'GET',
-      headers: this._headers
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token}`
+      }
     });
   }
 
-  getInitialCards() {
+  getInitialCards(token) {
     return this._sendRequest(`${this._url}/cards`, {
       method: 'GET',
-      headers: this._headers
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token}`
+      }
     });
   }
 
-  setUserInfo(data) {
+  setUserInfo(data, token) {
     return this._sendRequest(`${this._url}/users/me`, {
       method: 'PATCH',
-      headers: this._headers,
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token}`
+      },
       body: JSON.stringify({
         name: data.name,
         about: data.about
@@ -39,10 +47,13 @@ class Api {
     });
   }
 
-  addNewCard(data) {
+  addNewCard(data, token) {
     return this._sendRequest(`${this._url}/cards`, {
       method: 'POST',
-      headers: this._headers,
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token}`
+      },
       body: JSON.stringify({
         name: data.name,
         link: data.link
@@ -50,41 +61,49 @@ class Api {
     });
   }
 
-  changeLikeCardStatus(card, like) {
+  changeLikeCardStatus(card, like, token) {
     if (like) {
       return this._sendRequest(`${this._url}/cards/likes/${card}`, {
         method: 'DELETE',
-        headers: this._headers
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`
+        }
       });
     } else {
       return this._sendRequest(`${this._url}/cards/likes/${card}`, {
         method: 'PUT',
-        headers: this._headers
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`
+        }
       });
     }
   }
 
-  deleteCard(cardId) {
+  deleteCard(cardId, token) {
     return this._sendRequest(`${this._url}/cards/${cardId}`, {
       method: 'DELETE',
-      headers: this._headers
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token}`
+      }
     });
   }
 
-  editUserAvatar(data) {
+  editUserAvatar(data, token) {
     return this._sendRequest(`${this._url}/users/me/avatar`, {
       method: 'PATCH',
-      headers: this._headers,
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token}`
+      },
       body: JSON.stringify(data)
     });
   }
 }
 
 export const api = new Api({
-  url: 'https://api.griabrams.students.nomoredomains.rocks',
-  // url: 'http://localhost:3000',
-  headers: {
-    'Authorization': `Bearer ${localStorage.getItem("token")}`,
-    'Content-Type': 'application/json'
-  }
+  url: 'https://api.griabrams.students.nomoredomains.rocks'
+  // url: 'http://localhost:3000'
 });

@@ -63,7 +63,7 @@ class Api {
 
   changeLikeCardStatus(card, like, token) {
     if (like) {
-      return this._sendRequest(`${this._url}/cards/likes/${card}`, {
+      return this._sendRequest(`${this._url}/cards/${card}/likes`, {
         method: 'DELETE',
         headers: {
           'Content-Type': 'application/json',
@@ -71,7 +71,7 @@ class Api {
         }
       });
     } else {
-      return this._sendRequest(`${this._url}/cards/likes/${card}`, {
+      return this._sendRequest(`${this._url}/cards/${card}/likes`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
@@ -104,6 +104,6 @@ class Api {
 }
 
 export const api = new Api({
-  url: 'https://api.griabrams.students.nomoredomains.rocks'
-  // url: 'http://localhost:3000'
+  // url: 'https://api.griabrams.students.nomoredomains.rocks'
+  url: 'http://localhost:3000'
 });

@@ -18,6 +18,7 @@ const app = express();
 app.use(cors());
 
 app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 
 mongoose.connect('mongodb://localhost:27017/mestodb', {
   useNewUrlParser: true,
@@ -48,10 +49,8 @@ app.post('/signup', celebrate({
   }).unknown(true),
 }), createUser);
 
-app.use(auth);
-
-app.use('/', cardsRouter);
-app.use('/', usersRouter);
+app.use('/', auth, cardsRouter);
+app.use('/', auth, usersRouter);
 
 app.use('', (req, res) => {
   throw new NotFoundError('Запрашиваемый ресурс не найден');

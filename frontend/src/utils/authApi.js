@@ -49,8 +49,8 @@ class Api {
 }
 
 export const authApi = new Api({
-  // url: 'https://api.griabrams.students.nomoredomains.rocks',
-  url: 'http://localhost:3000',
+  url: 'https://api.griabrams.students.nomoredomains.rocks',
+  // url: 'http://localhost:3000',
   headers: {
     'Content-Type': 'application/json'
   }

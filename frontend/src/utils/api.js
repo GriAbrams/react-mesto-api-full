@@ -105,5 +105,4 @@ class Api {
 
 export const api = new Api({
   url: 'https://api.griabrams.students.nomoredomains.rocks'
-  // url: 'http://localhost:3000'
 });
